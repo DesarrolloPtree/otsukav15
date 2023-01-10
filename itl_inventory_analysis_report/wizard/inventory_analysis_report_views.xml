@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<record id="view_inventory_analysis_report_excel" model="ir.ui.view">
+			<field name="name">inventory.analysis.report.excel</field>
+			<field name="model">inventory.analysis.report.excel</field>
+			<field name="arch" type="xml">
+				<form string="Genrated xls File">
+					<group>
+						<field name="file_name" invisible="1"/>
+						<field name="excel_file" readonly="1" filename="file_name"/>
+					</group>
+					 <footer>
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+	 	</record>
+
+		<record id="view_inventory_analysis_report_wizard" model="ir.ui.view">
+			<field name="name">Inventory Analysis Report</field>
+			<field name="model">inventory.analysis.report</field>
+			<field name="arch" type="xml">
+				<form string="Inventory Analysis Report">
+                    <sheet>
+						<group string="Date Range">
+							<field name="start_date"/>
+							<field name="end_date"/>
+						</group>
+                    </sheet>
+					<footer>
+						<button string="Print Excel" name="print_exl_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+			   </form>
+			</field>
+		</record>
+
+		<record id="action_inventory_analysis_report" model="ir.actions.act_window">
+			<field name="name">Inventory Analysis Report</field>
+			<field name="res_model">inventory.analysis.report</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+			id="menu_inventory_analysis_report"
+			name="Inventory Analysis Report"
+			parent="sale.menu_sale_report"
+			action="action_inventory_analysis_report"
+		   />
+
+	 
+	</data>
+</openerp>

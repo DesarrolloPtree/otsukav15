@@ -1,0 +1,21 @@
+<odoo>
+    
+    <record model="ir.ui.view" id="partner_agreement_form_view">
+        <field name="name">Agreement Form</field>
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='create_new_agreement']" position="after">
+                <button name="send_to_approve"
+                    string="Send to approve" type="object" attrs="{'invisible': [('approval_status', 'not in', ['new',False])]}"/>
+            </xpath>
+            <xpath expr="//group[1]" position="before">
+                <group string="Approval Info">
+                    <field name="approval_request_id"/>
+                    <field name="approval_status"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+
+		<record id="view_itl_ar_report" model="ir.ui.view">
+			<field name="name">view.itl.ar.report</field>
+			<field name="model">itl.ar.report</field>
+			<field name="arch" type="xml">
+				<form string="Genrated xls File">
+					<group>
+						<field name="file_name" invisible="1"/>
+						<field name="excel_file" readonly="1" filename="file_name"/>
+					</group>
+					 <footer>
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+	 	</record>
+
+    </data>
+</odoo>

@@ -1,0 +1,70 @@
+<odoo>
+    
+    <record model="ir.ui.view" id="itl_add_addenda_form">
+        <field name="name">Add Addenda</field>
+        <field name="model">itl.add.addenda</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="itl_addenda"/>
+                            <field name="itl_partner_id" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
+                        </group>
+                        <group>
+                            <field name="itl_file_name" invisible="1"/>
+                            <field name="itl_file" widget="binary"  filename="itl_file_name"/>
+                            <field name="itl_invoice_id" domain="[('state','=','posted'),('l10n_mx_edi_pac_status','=','signed'),'|',('partner_id','=',itl_partner_id),('partner_id.commercial_partner_id','=',itl_partner_id)]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Addenda Soriana">
+                            <group>
+                                <group>
+                                    <field name="itl_proveedor" force_save="1" readonly="1"/>
+                                    <field name="itl_remision"/>
+                                    <field name="itl_fecha_remision"/>
+                                    <field name="itl_tienda"/>
+                                    <field name="itl_tipo_moneda"/>
+                                    <field name="itl_tipo_bulto"/>
+                                    <field name="itl_entrega_mercancia"/>
+                                    <field name="itl_cantidad_bultos"/>
+                                    <field name="itl_subtotal"/>
+                                    <field name="itl_descuentos"/>
+                                </group>
+                                <group>
+                                    <field name="itl_ieps"/>
+                                    <field name="itl_iva"/>
+                                    <field name="itl_otros_impuestos"/>
+                                    <field name="itl_total"/>
+                                    <field name="itl_cantidad_pedidos"/>
+                                    <field name="itl_fecha_entrega_mercancia"/>
+                                    <field name="itl_folio_nota_entrada"/>
+                                    <field name="itl_folio_pedido"/>
+                                    <field name="itl_cantidad_articulos"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button string="Generar Addenda" name="itl_generar_addenda" class="oe_highlight" type="object"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="add_addemda_act_window">
+        <field name="name">Add Addenda</field>
+        <field name="res_model">itl.add.addenda</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+    <menuitem
+            id="menu_action_add_addenda"
+            action="add_addemda_act_window"
+            parent="account.menu_finance_receivables"
+            sequence="1"/>
+    
+</odoo>

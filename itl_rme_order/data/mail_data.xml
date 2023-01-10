@@ -1,0 +1,71 @@
+<data noupdate="0">
+    
+    <record id="email_template_receiving_return_rme_picking" model="mail.template">
+        <field name="name">ITL Receiving Return RME: Send by email</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="subject">La devolución ${object.name} está lista para ser validada</field>
+        <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+        <field name="partner_to">${object.itl_origin_contact_id.id}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Buen día estimado ${object.itl_origin_contact_id.name},
+                    <br/><br/>
+                    Espero estén teniendo un excelente día. Sin más preámbulos solicitamos de su apoyo por favor con el recibo adecuado de la siguiente devolución de producto:
+                    <br/><br/>
+                    <table style="width: 50%;">
+                        <tr>
+                            <td>
+                                <strong>Producto</strong>
+                            </td>
+                            <td>
+                                <strong>Cantidad</strong>
+                            </td>
+                            <td>
+                                <strong>Unidad</strong>
+                            </td>
+                            <td>
+                                <strong>Lote</strong>
+                            </td>
+                        </tr>
+                        % for line in object.move_line_ids_without_package:
+                        <tr>
+                            <td >
+                                ${line.product_id.name}
+                            </td>
+                            <td >
+                                % if (object.picking_type_code in ['internal','incoming']):
+                                    ${line.qty_done}
+                                % endif
+                                % if (object.picking_type_code in ['outgoing']):
+                                    ${line.product_uom_qty}
+                                % endif
+                            </td>
+                            <td>
+                                ${line.product_uom_id.name}
+                            </td>
+                            <td>
+                                ${line.lot_id.name}
+                            </td>
+                        </tr>
+                        %endfor
+                    </table>
+                    <br/>
+                    <strong>Orden de recepción: </strong>${object.name}<br/>
+                    <br/>
+                    Favor de confirmar la entrega de producto en su almacén a través del siguiente link, también solicitamos su apoyo con una foto donde se observe la calidad del producto devuelto.
+                    <br/><br/>
+                    <a href="${ctx.get('base_url')}">Ir al movimiento de inventario</a>
+                    <br/><br/>
+                    Muchas gracias de antemano, no duden de hacernos saber cualquier duda o comentario.
+                    <br/><br/>
+                    Saludos
+                    <br/>
+                </p>
+            </div>
+        </field>
+        <field name="user_signature" eval="False"/>
+        <field name="auto_delete" eval="False"/>
+    </record>
+    
+</data>

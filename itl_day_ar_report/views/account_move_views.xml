@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+
+    <record id="itl_ar_report_action" model="ir.actions.server">
+      <field name="name">Generate AR report</field>
+      <field name="model_id" ref="itl_day_ar_report.model_account_move"/>
+      <field name="binding_model_id" ref="itl_day_ar_report.model_account_move"/>
+      <field name="state">code</field>
+      <field name="code">action = records.itl_ar_report()</field>
+    </record>
+
+  </data>
+</odoo>

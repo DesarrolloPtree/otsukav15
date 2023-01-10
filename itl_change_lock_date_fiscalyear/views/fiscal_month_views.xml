@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_fiscal_month" model="ir.ui.view">
+            <field name="name">fiscal.month.tree</field>
+            <field name="model">fiscal.month</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="fiscal_date"/>
+                    <field name="state"/>
+               </tree>
+            </field>
+        </record>
+
+        <record id="action_view_fiscal_month" model="ir.actions.act_window">
+            <field name="name">Fiscal Month</field>
+            <field name="res_model">fiscal.month</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_fiscal_month"/>
+        </record>
+
+        <menuitem
+            id="menu_action_fiscal_month"
+            name="Fiscal Months"
+            action="action_view_fiscal_month"
+            parent="account.account_account_menu"
+            sequence="55"
+            groups="itl_change_lock_date_fiscalyear.group_fiscalyear_lock_date_manager"/>
+    </data>
+</odoo>

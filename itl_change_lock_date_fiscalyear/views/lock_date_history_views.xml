@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_lock_date_history" model="ir.ui.view">
+            <field name="name">lock.date.history.tree</field>
+            <field name="model">lock.date.history</field>
+            <field name="arch" type="xml">
+                <tree create="false" default_order="create_date desc">
+                    <field name="write_uid"/>
+                    <field name="create_date"/>
+               </tree>
+            </field>
+        </record>
+
+        <record id="action_view_lock_date_history" model="ir.actions.act_window">
+            <field name="name">Lock Date History</field>
+            <field name="res_model">lock.date.history</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_lock_date_history"/>
+        </record>
+
+        <menuitem
+            id="menu_action_flock_date_history"
+            name="Lock Date History"
+            action="action_view_lock_date_history"
+            parent="account.account_account_menu"
+            sequence="55"
+            groups="itl_change_lock_date_fiscalyear.group_fiscalyear_lock_date_manager"/>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        
+        <!--Account Move lines-->
+        <record id="validate_account_move_view" model="ir.ui.view">
+            <field name="name">Post Journal Entries</field>
+            <field name="model">validate.account.move</field>
+            <field name="inherit_id" ref="account.validate_account_move_view"/>
+            <field name="arch" type="xml">
+                <span position="after">
+                    <group>
+                        <span class="o_form_label">Select a new account to post in the bills (leave empty to use the default account in the bills).</span>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="itl_account_id"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </span>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+    
+        <record id="itl_view_account_payment_form" model="ir.ui.view">
+            <field name="name">account.payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='amount_div']" position="after">
+                    <field name="itl_has_different_currencies" invisible="1"/>
+                    <label for="itl_destination_amount" attrs="{'invisible': [('itl_has_different_currencies','=',False),('itl_pay_at_same','=',False)]}"/>
+                    <div name="amount_div" class="o_row" attrs="{'invisible': [('itl_has_different_currencies','=',False),('itl_pay_at_same','=',False)]}">
+                        <field name="itl_destination_amount" attrs="{'required': ['|',('itl_has_different_currencies','=',True),('itl_pay_at_same','=',True)]}" widget="monetary" options="{'currency_field': 'itl_destination_currency'}"/>
+                        <field name="itl_destination_currency" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_currency" readonly="1" force_save="1"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group[2]" position="inside">
+                    <field name="itl_pay_at_same"/>
+                    <field name="itl_journal_id" widget="selection" readonly="1" force_save="1" string="From Journal" attrs="{'invisible': [('itl_pay_at_same','=',False)]}"/>
+                    <field name="itl_destination_journal_id" widget="selection" attrs="{'invisible': [('itl_pay_at_same','=',False)], 'required': [('itl_pay_at_same','=',True)]}"/>
+                    <field name="itl_second_payment_id" attrs="{'invisible': [('itl_pay_at_same','=',False)]}" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

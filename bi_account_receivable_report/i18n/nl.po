@@ -1,0 +1,230 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_account_receivable_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-26 14:35+0000\n"
+"PO-Revision-Date: 2021-08-26 14:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<span>Due</span>"
+msgstr "<span>Te betalen</span>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<strong>Partner's:</strong>"
+msgstr "<strong>Partner:</strong>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<strong>Partners:</strong>"
+msgstr "<strong>Partners:</strong>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<strong>Period Length (days)</strong>"
+msgstr "<strong>Periode Lengte (dagen)</strong>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<strong>Start Date:</strong>"
+msgstr "<strong>Startdatum:</strong>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "<strong>Target Moves:</strong>"
+msgstr "<strong>Doelbewegingen:</strong>"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Account Total"
+msgstr "Accounttotaal"
+
+#. module: bi_account_receivable_report
+#: model:ir.ui.menu,name:bi_account_receivable_report.bi_menu_finance_report_partner_ledger_report1
+msgid "Aged Partner Balance PDF Reports"
+msgstr "Leeftijd partnersaldo PDF-rapporten"
+
+#. module: bi_account_receivable_report
+#: model:ir.actions.act_window,name:bi_account_receivable_report.action_bi_partner_ledger_report_account_aged_balance_view
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_partner_ledger_report_form_partner_aged_ledger
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Aged Receivable Balance Report"
+msgstr "Verouderd debiteurensaldorapport"
+
+#. module: bi_account_receivable_report
+#: model:ir.ui.menu,name:bi_account_receivable_report.menu_bi_partner_ledger_report_aged_partner_balance
+msgid "Aged Receivable Partner Balance"
+msgstr "Verouderd te ontvangen partnersaldo"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields.selection,name:bi_account_receivable_report.selection__bi_account_aged_partner_balance__target_move__all
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "All Entries"
+msgstr "Alle inzendingen"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields.selection,name:bi_account_receivable_report.selection__bi_account_aged_partner_balance__target_move__posted
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "All Posted Entries"
+msgstr "Alle geplaatste berichten"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_partner_ledger_report_form_partner_aged_ledger
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__create_uid
+msgid "Created by"
+msgstr "Gemaakt door"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__create_date
+msgid "Created on"
+msgstr "Gemaakt op"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__date_from
+msgid "Date From"
+msgstr "Datum vanaf"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__display_name
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_report_bi_account_receivable_report_bi_report_rec__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__id
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_report_bi_account_receivable_report_bi_report_rec__id
+msgid "ID"
+msgstr "ID kaart"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__journal_ids
+msgid "Journals"
+msgstr "tijdschriften"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance____last_update
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_report_bi_account_receivable_report_bi_report_rec____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__write_date
+msgid "Last Updated on"
+msgstr "Laatst geupdate op"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__partner_ids
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bi_account_receivable_report
+#: model:ir.actions.report,name:bi_account_receivable_report.bi_report_rec1
+msgid "Partner Aged Payable Report"
+msgstr "Rapport over te betalen leeftijd van partner"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__result_selection
+msgid "Partner's"
+msgstr "Partner's"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Partners"
+msgstr "Partners"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields.selection,name:bi_account_receivable_report.selection__bi_account_aged_partner_balance__result_selection__supplier
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Payable Accounts"
+msgstr "Te betalen rekeningen"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__period_length
+msgid "Period Length (days)"
+msgstr "Periode Lengte (dagen)"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_partner_ledger_report_form_partner_aged_ledger
+msgid "Print"
+msgstr "Afdrukken"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields.selection,name:bi_account_receivable_report.selection__bi_account_aged_partner_balance__result_selection__customer
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Receivable Accounts"
+msgstr "Te ontvangen rekeningen"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid ""
+"Receivable and Payable\n"
+"                                    Accounts"
+msgstr ""
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields.selection,name:bi_account_receivable_report.selection__bi_account_aged_partner_balance__result_selection__customer_supplier
+msgid "Receivable and Payable Accounts"
+msgstr "Te ontvangen en te betalen rekeningen"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_partner_ledger_report_form_partner_aged_ledger
+msgid "Report Options"
+msgstr "Rapportopties"
+
+#. module: bi_account_receivable_report
+#: model:ir.model.fields,field_description:bi_account_receivable_report.field_bi_account_aged_partner_balance__target_move
+msgid "Target Moves"
+msgstr "Doelbewegingen"
+
+#. module: bi_account_receivable_report
+#: model_terms:ir.ui.view,arch_db:bi_account_receivable_report.bi_report_rec
+msgid "Total"
+msgstr "Totaal"
+
+#. module: bi_account_receivable_report
+#: code:addons/bi_account_receivable_report/reports/report_aged_partner.py:0
+#, python-format
+msgid "Unknown Partner"
+msgstr "Onbekende partner"
+
+#. module: bi_account_receivable_report
+#: code:addons/bi_account_receivable_report/wizard/account_aged_partner_balance.py:0
+#, python-format
+msgid "You must set a period length greater than 0."
+msgstr "U moet een periodelengte groter dan 0 instellen."
+
+#. module: bi_account_receivable_report
+#: code:addons/bi_account_receivable_report/wizard/account_aged_partner_balance.py:0
+#, python-format
+msgid "You must set a start date."
+msgstr "U moet een startdatum instellen."
+
+#. module: bi_account_receivable_report
+#: model:ir.model,name:bi_account_receivable_report.model_bi_account_aged_partner_balance
+msgid "bi.account.aged.partner.balance"
+msgstr ""
+
+#. module: bi_account_receivable_report
+#: model:ir.model,name:bi_account_receivable_report.model_report_bi_account_receivable_report_bi_report_rec
+msgid "report.bi_account_receivable_report.bi_report_rec"
+msgstr ""

@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+    
+    <record model="ir.ui.view" id="res_partner_form_inherit_l10n_mx_edi">
+        <field name="name">partner.extended.form.fresko</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_mx_edi.res_partner_form_inherit_l10n_mx_edi"/>
+        <field name="arch" type="xml">
+            <field name="l10n_mx_edi_addenda_doc" position="after">
+                <field name="addenda_code" invisible="1"/>
+                <field name="gnl_fresko" attrs="{'invisible': [('addenda_code','!=','fresko')]}"/>
+                <field name="contacto_compras_fresko" attrs="{'invisible': [('addenda_code','!=','fresko')]}"/>
+                <field name="identif_secundaria_tipo_fresko" attrs="{'invisible': [('addenda_code','!=','fresko')]}"/>
+                <field name="identif_secundaria_valor_fresko" attrs="{'invisible': [('addenda_code','!=','fresko')]}"/>
+            </field>
+        </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,9 @@
+1) Version: 13.0.0.1 | Date : 2/12/2020
+-->  Fixed the issue of installation error. Remove view type.
+-->  Remove print statements.
+
+2) Version: 13.0.0.2 | Date : 4/12/2020
+-->  Fixed the issue, When in Date From field we select today’s date.
+-->  In Aged Receivable Balance Report print Due in place of Not Due.
+
+=> 13.0.0.3 : Add French, Spanish , Arabic and Dutch translation in module also improved an index.

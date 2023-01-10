@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        
+        <record id="view_sales_order_auto_done_setting" model="ir.ui.view">
+            <field name="name">sale.order.custom.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_auto_done_setting"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="attributes">
+                    <attribute name="confirm">Lock the sale will update quantity ordered against invoiced quantity, this can't undo. Continue?</attribute>
+                </button>
+            </field>
+        </record>
+        
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.custom.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <field name="itl_finished_sale" invisible="1"/>
+                    <button name="finish_sale" type="object" string="Finish Sale" attrs="{'invisible': ['|','|',('itl_finished_sale','=',True),('state','not in',['sale','done']),('invoice_status','not in',['to invoice'])]}" confirm="Finish the sale will update quantity ordered against invoiced quantity, this can't undo. Continue?"/>
+                </header>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

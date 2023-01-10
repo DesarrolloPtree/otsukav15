@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">related.pickings.account.invoice.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="itl_addenda" invisible="1"/>
+                <field name="itl_addenda_soriana" invisible="1"/>
+                <field name="itl_has_invoice" invisible="1"/>
+                <field name="addenda_code" invisible="1" force_save="1"/>
+            </field>
+            <header position="inside">
+                <button type="object" name="itl_append_addenda" string="Append addenda" attrs="{'invisible': [('addenda_code','!=','soriana')]}"/>
+            </header>
+            <notebook position="inside">
+                <page string="Addenda Soriana" attrs="{'invisible': [('itl_addenda_soriana','=',False)]}">
+                    <group>
+                        <group>
+                            <field name="itl_sale_order_id"/>
+                            <field name="itl_picking_addenda_id" attrs="{'readonly': [('itl_has_invoice','=',True)]}"/>
+                            <field name="itl_proveedor" force_save="1" readonly="1"/>
+                            <field name="itl_remision"/>
+                            <field name="itl_fecha_remision"/>
+                            <field name="itl_tienda"/>
+                            <field name="itl_tipo_moneda"/>
+                            <field name="itl_tipo_bulto"/>
+                            <field name="itl_entrega_mercancia"/>
+                            <field name="itl_cantidad_bultos"/>
+                            <field name="itl_subtotal"/>
+                            <field name="itl_descuentos"/>
+                        </group>
+                        <group>
+                            <field name="itl_picking_id" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" attrs="{'readonly': [('itl_has_invoice','=',True)]}"/>
+                            <field name="itl_ieps"/>
+                            <field name="itl_iva"/>
+                            <field name="itl_otros_impuestos"/>
+                            <field name="itl_total"/>
+                            <field name="itl_cantidad_pedidos"/>
+                            <field name="itl_fecha_entrega_mercancia"/>
+                            <field name="itl_folio_nota_entrada"/>
+                            <field name="itl_folio_pedido"/>
+                            <field name="itl_cantidad_articulos"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    
+</odoo>

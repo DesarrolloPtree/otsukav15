@@ -1,0 +1,203 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="itl_import_bancomer_payment_file">
+      <field name="name">Prepare Bancomer Payment File</field>
+      <field name="model">itl.prepare.bancomer.files</field>
+      <field name="arch" type="xml">
+          <form>
+              <sheet>
+                <script>
+                    $(document).ready(function(){
+                        $('.modal-lg').css({'max-width': '1600px'});
+                    }); 
+                </script>
+                  <group colspan="4">
+                      <group col="2">
+                          <field name="itl_company_partner_id" readonly="1" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
+                          <!--<field name="itl_cuenta_ordenante" domain="[('partner_id','=',itl_company_partner_id),('bank_id.c_banco','=','012')]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>-->
+                          <field name="itl_invalid_records" invisible="1"/>
+                          <field name="itl_clave_pago_bnc" invisible="1"/>
+                      </group>
+                      <group col="2">
+                          <!--<field name="itl_banco_ordenante" readonly="1" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>-->
+                          <!--<field name="itl_all_comprobante_fiscal"/>-->
+                      </group>
+                  </group>
+                  
+                  <group attrs="{'invisible': [('itl_invalid_records','=',False)]}">
+                        <p style="color:red;">
+                            <b>
+                                Los registros en color ROJO no serán agregados en los archivos.
+                            </b>
+                        </p>
+                  </group>
+                  
+                  <notebook>
+                        <page string="Disperción de Nómina">
+                            <field name="itl_nomina_ids" nolabel="1" >
+                                <tree editable="top" create="0" delete="0" decoration-danger="itl_invalid_record == True" decoration-success="itl_invalid_record == False">
+                                    <field name="itl_invalid_record" invisible="1" force_save="1"/>
+                                    <field name="itl_rfc_empleado" force_save="1"/>
+                                    <field name="itl_tipo_cuenta"/>
+                                    <field name="itl_numero_cuenta"/>
+                                    <field name="itl_importe_pago"/>
+                                    <field name="itl_nombre_titular"/>
+                                    <field name="itl_banco_destino"/>
+                                    <field name="itl_plaza_destino"/>
+                                </tree>
+                            </field>
+                        </page>
+                      <!--
+                      <page string="Mismo Banco (BBVA)">
+                          <group>
+                              <div>
+                                  <div class="row">
+                                      <div class="col">
+                                          <p style="color: black;">
+                                            <b>
+                                                Campos obligatorios:
+                                            </b>
+                                        </p>
+                                      </div>
+                                  </div>
+                                  <div class="row" style="max-width: 35%;">
+                                      <div class="col">
+                                          <ul>
+                                                <li>Tipo</li>
+                                                <li>Cuenta Benef.</li>
+                                                <li>Cuenta Ordenante</li>
+                                            </ul>
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                                <li>Divisa</li>
+                                                <li>Importe</li>
+                                                <li>Motivo de Pago</li>
+                                            </ul>
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                                <li>Cuenta Ordenante</li>
+                                                <li>Cuenta Ordenante</li>
+                                            </ul>
+                                      </div>
+                                  </div>
+                                </div>
+                          </group>
+                          <field name="itl_mismo_banco_ids" nolabel="1" context="{'original_model': True, 'itl_mismo_banco': True}">
+                              <tree editable="top" create="0" delete="0" decoration-danger="itl_invalid_record == True" decoration-success="itl_invalid_record == False">
+                                  <field name="itl_exp_sheet_id" invisible="1" force_save="1"/>
+                                  <field name="itl_invalid_record" invisible="1" force_save="1"/>
+                                  <field name="itl_size_cuenta_benef" invisible="1" force_save="1"/>
+                                  <field name="itl_size_cuenta_ordenante" invisible="1" force_save="1"/>
+                                  <field name="itl_company_partner_id" invisible="1" force_save="1"/>
+                                  <field name="itl_partner_id" readonly="1" options="{'no_open':True}" force_save="1"/>
+                                  <field name="itl_clave_pago_bnc" force_save="1"/>
+                                  <field name="itl_asunto_beneficiario" domain="[('partner_id','=',itl_partner_id)]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" required="1" force_save="1" context="{'original_model': True, 'itl_mismo_banco': True}"/>
+                                  <field name="itl_banco_beneficiario" readonly="1" invisible="1" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" force_save="1"/>
+                                  <field name="itl_asunto_ordenante" domain="[('partner_id','=',itl_company_partner_id),('bank_id.c_banco','=','012')]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" required="1" force_save="1" context="{'original_model': True}"/>
+                                  <field name="itl_divisa_operacion" readonly="1" options="{'no_open':True}" required="1" force_save="1"/>
+                                  <field name="itl_importe_operacion" readonly="1" required="1" force_save="1"/>
+                                  <field name="itl_motivo_pago" required="1" force_save="1"/>
+                                  <field name="itl_comprobante_fiscal" force_save="1"/>
+                                  <field name="itl_rfc_beneficiario" attrs="{'readonly': [('itl_comprobante_fiscal','=',False)], 'required': [('itl_comprobante_fiscal','=',True)]}" optional="hide" force_save="1"/>
+                                  <field name="itl_iva_pago" attrs="{'readonly': [('itl_comprobante_fiscal','=',False)], 'required': [('itl_comprobante_fiscal','=',True)]}" options="{'no_open':True}" optional="hide" force_save="1"/>
+                              </tree>
+                          </field>
+                      </page>
+                      <page string="Interbancario">
+                          <group>
+                                <div>
+                                  <div class="row">
+                                      <div class="col">
+                                          <p style="color: black;">
+                                            <b>
+                                                Campos obligatorios:
+                                            </b>
+                                        </p>
+                                      </div>
+                                  </div>
+                                  <div class="row" style="max-width: 47%;">
+                                      <div class="col">
+                                          <ul>
+                                                <li>Tipo</li>
+                                                <li>Cuenta Benef.</li>
+                                                <li>Cuenta Ordenante</li>
+                                            </ul>
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                                <li>Divisa</li>
+                                                <li>Importe</li>
+                                                <li>Titular</li>
+                                            </ul>
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                                <li>Tipo Cuenta</li>
+                                                <li>Número Banco</li>
+                                              <li>Motivo de Pago</li>
+                                            </ul>
+                                      </div>
+                                      <div class="col">
+                                          <ul>
+                                                <li>Ref. Numérica</li>
+                                                <li>Disponibilidad</li>
+                                            </ul>
+                                      </div>
+                                  </div>
+                                </div>
+                          </group>
+                          <field name="itl_interbancario_ids" nolabel="1" context="{'original_model': True, 'itl_interbancario': True}">
+                              <tree editable="top" create="0" delete="0"  decoration-danger="itl_invalid_record == True" decoration-success="itl_invalid_record == False">
+                                  <field name="itl_exp_sheet_id" invisible="1" force_save="1"/>
+                                  <field name="itl_invalid_record" invisible="1" force_save="1"/>
+                                  <field name="itl_size_cuenta_benef" invisible="1" force_save="1"/>
+                                  <field name="itl_size_cuenta_ordenante" invisible="1" force_save="1"/>
+                                  <field name="itl_company_partner_id" invisible="1" force_save="1"/>
+                                  <field name="itl_partner_id" readonly="1" options="{'no_open':True}" force_save="1"/>
+                                  <field name="itl_clave_pago_bnc" force_save="1"/>
+                                  <field name="itl_asunto_beneficiario" domain="[('partner_id','=',itl_partner_id)]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" required="0" force_save="1" context="{'original_model': True, 'itl_interbancario': True}"/>
+                                  <field name="itl_banco_beneficiario" readonly="1" force_save="1" invisible="1"/>
+                                  <field name="itl_asunto_ordenante" domain="[('partner_id','=',itl_company_partner_id),('bank_id.c_banco','=','012')]" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" required="0" force_save="1" context="{'original_model': True}"/>
+                                  <field name="itl_divisa_operacion" readonly="1" options="{'no_open':True}" required="1" force_save="1"/>
+                                  <field name="itl_importe_operacion" readonly="1" required="1" force_save="1"/>
+                                  <field name="itl_titular_asunto" required="0" force_save="1"/>
+                                  <field name="itl_tipo_cuenta" required="0" force_save="1"/>
+                                  <field name="itl_num_banco_benef" required="0" force_save="1" readonly="1"/>
+                                  <field name="itl_motivo_pago" required="0" force_save="1"/>
+                                  <field name="itl_ref_numerica" required="0" force_save="1" />
+                                  <field name="itl_disponibilidad" required="0" force_save="1"/>
+                                  <field name="itl_comprobante_fiscal" force_save="1"/>
+                                  <field name="itl_rfc_beneficiario" attrs="{'readonly': [('itl_comprobante_fiscal','=',False)], 'required': [('itl_comprobante_fiscal','=',True)]}" optional="hide" force_save="1"/>
+                                  <field name="itl_iva_pago" attrs="{'readonly': [('itl_comprobante_fiscal','=',False)], 'required': [('itl_comprobante_fiscal','=',True)]}" options="{'no_open':True}" optional="hide" force_save="1"/>
+                              </tree>
+                          </field>
+                      </page>
+                        -->
+                  </notebook>
+              </sheet>
+              <footer>
+                    <button name="action_confirm" type="object" string="Generate files" class="btn btn-primary"/>
+                    <button name="cancel" string="CANCEL" special="cancel" class="oe_link"/> 
+                </footer>
+          </form>
+        </field>
+      </record>
+      
+    <record model="ir.actions.server" id="itl_bancomer_payment_action">
+        <field name="name">Bancomer Pagos</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="hr_expense.model_hr_expense_sheet"/>
+        <field name="binding_model_id" ref="hr_expense.model_hr_expense_sheet"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_prepare_bancomer_file()
+        </field>
+    </record>
+      
+    </data>
+</odoo>

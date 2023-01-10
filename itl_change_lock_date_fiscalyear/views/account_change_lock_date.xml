@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+        
+        <record model="ir.ui.menu" id="account_accountant.menu_action_change_lock_date">
+          <field name="groups_id" eval="[(6,0,[ref('group_fiscalyear_lock_date')])]"/>
+        </record>
+          
+        <record id="view_account_change_lock_date" model="ir.ui.view">
+            <field name="name">account.change.lock.date.form</field>
+            <field name="model">account.change.lock.date</field>
+            <field name="inherit_id" ref="account_accountant.view_account_change_lock_date"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="fiscalyear_lock_date_enable" invisible="1"/>
+                            <field name="tax_lock_date_enable" invisible="1"/>
+                            <field name="is_fiscalyear_lock_date_manager" invisible="1"/>
+                            <field name="period_lock_date" attrs="{'readonly': [('is_fiscalyear_lock_date_manager','=',False)]}"/>
+                            <label for="fiscalyear_lock_date"/>
+                            <div class="o_row">
+                                <field name="fiscalyear_lock_date" attrs="{'readonly': [('fiscalyear_lock_date_enable','=',False)]}" force_save="True"/>
+                                <div attrs="{'invisible': [('fiscalyear_lock_date_enable','=',True)]}">
+                                    <p class="text-danger">
+                                        Month Closed
+                                    </p>
+                                </div>
+                                <div attrs="{'invisible': [('fiscalyear_lock_date_enable','=',False)]}">
+                                    <p class="text-success">
+                                        Month Open
+                                    </p>
+                                </div>
+                            </div>
+                            <label for="tax_lock_date"/>
+                            <div class="o_row">
+                                <field name="tax_lock_date" attrs="{'readonly': [('tax_lock_date_enable','=',False)]}" force_save="True"/>
+                                <div attrs="{'invisible': [('tax_lock_date_enable','=',True)]}">
+                                    <p class="text-danger">
+                                        Month Closed
+                                    </p>
+                                </div>
+                                <div attrs="{'invisible': [('tax_lock_date_enable','=',False)]}">
+                                    <p class="text-success">
+                                        Month Open
+                                    </p>
+                                </div>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="last_lock_date_update_by" readonly="1"/>
+                            <field name="last_lock_date_update_date" readonly="1"/>
+                        </group>
+                    </group>
+                </xpath>
+                <!--
+                <field name="tax_lock_date" position="after">
+                    <field name="last_lock_date_update_by" readonly="1"/>
+                    <field name="last_lock_date_update_date" readonly="1"/>
+                    <field name="fiscalyear_lock_date_enable" invisible="1"/>
+                    <field name="tax_lock_date_enable" invisible="1"/>
+                </field>
+                -->
+            </field>
+        </record>
+      
+  </data>
+</odoo>

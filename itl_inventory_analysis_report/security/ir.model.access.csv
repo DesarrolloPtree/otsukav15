@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itl_inventory_analysis_report_itl_inventory_analysis_report,itl_inventory_analysis_report.itl_inventory_analysis_report,model_itl_inventory_analysis_report_itl_inventory_analysis_report,base.group_user,1,1,1,1

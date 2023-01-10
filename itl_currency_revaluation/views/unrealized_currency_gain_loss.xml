@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="curr_unrealized_report" inherit_id="account_multicurrency_revaluation.curr_unrealized_report">
+        <xpath expr="//table/thead/tr/th[1]" position="before">
+            <th class="new_th_left" style="width: 5%;">Status</th>
+            <th class="new_th_left" style="width: 10%;">Date</th>
+        </xpath>
+        <xpath expr="//table/tbody/t/t/tr/td[1]" position="before">
+            <td><span t-esc="line.get('move_status') or line.get('move_status') or '--'"/></td>
+            <td><span t-esc="line.get('date') or line.get('date') or '--'"/></td>
+        </xpath>
+        <xpath expr="//table/tfoot/tr/td[1]" position="after">
+            <td class="new_th_left"></td>
+            <td class="new_th_left"></td>
+        </xpath>
+    </template>
+</odoo>

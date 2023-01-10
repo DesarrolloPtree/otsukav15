@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>	
+
+        <record id="itl_duplicate_sale_order_form" model="ir.ui.view">
+            <field name="name">Select Order Type</field>
+            <field name="model">itl.duplicate.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Select Order Type">
+                    <sheet>
+                        <group>
+                            <p>
+                                <b>
+                                    Select the type to use in the new sale order.
+                                </b>
+                            </p>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="itl_sale_order_id" readonly="1" force_save="1" invisible="1"/>
+                                <field name="itl_sale_order_type"/>
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Duplicate" class="btn-primary" type="object" name="duplicate_order"/>
+                    </footer>
+                </form>
+            </field>	
+        </record>
+
+    </data>
+</odoo>

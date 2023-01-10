@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">itl.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="owner_id" position="after">
+                    <field name="itl_available_invoices" widget="many2many_tags" invisible="1"/>
+                    <field name="itl_is_return" invisible="1"/>
+                    <field name="itl_is_rme" invisible="1"/>
+                    <field name="picking_type_code" invisible="1"/>
+                    <field name="itl_invoice_origin" domain="[('id','in',itl_available_invoices)]" options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}" attrs="{'invisible': ['|','&amp;','&amp;',('picking_type_code','!=','incoming'),('itl_is_rme','=',True),('itl_is_return','=',False),'&amp;','&amp;',('picking_type_code','=','incoming'),('itl_is_rme','=',True),('itl_is_return','=',False)]}"/>
+                    <field name="itl_refund_type" attrs="{'invisible': ['|','&amp;','&amp;',('picking_type_code','!=','incoming'),('itl_is_rme','=',True),('itl_is_return','=',False),'&amp;','&amp;',('picking_type_code','=','incoming'),('itl_is_rme','=',True),('itl_is_return','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    
+        <record id="account_move_motivos_cancelacion" model="ir.ui.view">
+            <field name="name">prodigia.facturacion.account.move.cancel.view</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='l10n_mx_edi_origin']" position="after">
+                    <field name="l10n_mx_motivo_cancelacion"/>
+                    <field name="l10n_mx_uuid_sustituto" attrs="{'required': [('l10n_mx_motivo_cancelacion','=','01')], 'invisible': [('l10n_mx_motivo_cancelacion','!=','01')]}"/>
+                </xpath>
+            </field>
+        </record>
+      
+  </data>
+</odoo>

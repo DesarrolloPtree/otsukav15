@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="itl_addenda_fresko" name="Addenda Fresko">
+            <requestForPayment type="SimpleInvoiceType" documentStructureVersion="AMC7.1" t-att-DeliveryDate="record.invoice_date" documentStatus="ORIGINAL" contentVersion="1.3.1">
+                <requestForPaymentIdentification>
+                    <entityType>INVOICE</entityType>
+                    <uniqueCreatorIdentification><t t-esc="record.name"/></uniqueCreatorIdentification>
+                </requestForPaymentIdentification>
+                
+                <specialInstruction code="ZZZ">
+                    <text><t t-esc="record.l10n_mx_edi_amount_to_text()"/></text>
+                </specialInstruction>
+                <!--
+                <specialInstruction code="AAB">
+                    <text><t t-esc="record.l10n_mx_edi_payment_method_id.code"/></text>
+                </specialInstruction>
+                -->
+                <orderIdentification>
+                    <referenceIdentification type="ON"><t t-esc="record.ref"/></referenceIdentification>
+                    <ReferenceDate><t t-esc="record.order_date"/></ReferenceDate>
+                </orderIdentification>
+                <AdditionalInformation>
+                    <referenceIdentification type="ATZ"><t t-esc="record.numero_aprobacion"/></referenceIdentification>
+                </AdditionalInformation>
+                <buyer>
+                    <gln><t t-esc="record.partner_id.gnl_fresko"/></gln>
+                    <contactInformation>
+                        <personOrDepartmentName>
+                            <text><t t-esc="record.partner_id.contacto_compras_fresko"/></text>
+                        </personOrDepartmentName>
+                    </contactInformation>
+                </buyer>
+                <seller>
+                    <gln><t t-esc="record.company_id.partner_id.gnl_fresko"/></gln>
+                    <alternatePartyIdentification t-att-type="record.company_id.partner_id.identif_secundaria_tipo_fresko"><t t-esc="record.company_id.partner_id.identif_secundaria_valor_fresko"/></alternatePartyIdentification>
+                </seller>
+                <shipTo>
+                    <gln><t t-esc="record.partner_shipping_id.gnl_fresko"/></gln>
+                    <nameAndAddress>
+                        <name><t t-esc="record.partner_shipping_id.name"/></name>
+                        <streetAddressOne><t t-esc="record.partner_shipping_id.contact_address_complete"/></streetAddressOne>
+                        <city><t t-esc="record.partner_shipping_id.city_id.name"/></city>
+                        <postalCode><t t-esc="record.partner_shipping_id.zip"/></postalCode>
+                    </nameAndAddress>
+                </shipTo>
+                <currency t-att-currencyISOCode="record.currency_id.name">
+                    <currencyFunction>BILLING_CURRENCY</currencyFunction>
+                    <rateOfChange><t t-esc="record.currency_id.rate"/></rateOfChange>
+                </currency>
+                <!--
+                <Invoiced>
+                    <gln><t t-esc="record.partner_id.gnl_fresko"/></gln>
+                    <nameAndAddress>
+                        <name><t t-esc="record.partner_id.name"/></name>
+                        <streetAddressOne><t t-esc="record.partner_id.contact_address_complete"/></streetAddressOne>
+                        <city><t t-esc="record.partner_id.city_id.name"/></city>
+                        <postalCode><t t-esc="record.partner_id.zip"/></postalCode>
+                    </nameAndAddress>
+                </Invoiced>
+                <InvoiceCreator>
+                    <gln><t t-esc="record.company_id.partner_id.gnl_fresko"/></gln>
+                    <nameAndAddress>
+                        <name><t t-esc="record.company_id.partner_id.name"/></name>
+                        <streetAddressOne><t t-esc="record.company_id.partner_id.contact_address_complete"/></streetAddressOne>
+                        <city><t t-esc="record.company_id.partner_id.city_id.name"/></city>
+                        <postalCode><t t-esc="record.company_id.partner_id.zip"/></postalCode>
+                    </nameAndAddress>
+                </InvoiceCreator>
+                    
+                <paymentTerms PaymentTermsRelationTime="REFERENCE_AFTER" paymentTermsEvent="DATE_OF_INVOICE">
+                    <netPayment netPaymentTermsType="BASIC_NET">
+                        <paymentTimePeriod>
+                            <timePeriodDue timePeriod="DAYS">
+                                <value><t t-esc="record.invoice_payment_term_id.line_ids[-1].days"/></value>
+                            </timePeriodDue>
+                        </paymentTimePeriod>
+                    </netPayment>
+                </paymentTerms>
+                -->
+                <t t-set="row" t-value="1"/>
+                <t t-foreach="record.invoice_line_ids" t-as="line">
+                    <lineItem t-att-number="row" type="SimpleInvoiceLineItemType">
+                        <tradeItemIdentification>
+                            <gtin><t t-esc="line.product_id.barcode"/></gtin>
+                        </tradeItemIdentification>
+                        <tradeItemDescriptionInformation language="ES">
+                            <longText><t t-esc="line.product_id.name"/></longText>
+                        </tradeItemDescriptionInformation>
+                        <invoicedQuantity t-att-unitOfMeasure="'H87' if (line.is_rounding_line and not line.product_id) else line.product_uom_id.l10n_mx_edi_code_sat_id.code"><t t-esc="'%f' % line.quantity"/></invoicedQuantity>
+                        <!--<aditionalQuantity QuantityType="NUM_CONSUMER_UNITS"><t t-esc="line._get_qty_in_units()"/></aditionalQuantity>-->
+                        <grossPrice>
+                            <Amount><t t-esc="line.price_unit"/></Amount>
+                        </grossPrice>
+                        <netPrice>
+                            <Amount><t t-esc="line.price_unit"/></Amount>
+                        </netPrice>
+                        <AdditionalInformation>
+                            <referenceIdentification type="ON"><t t-esc="record.ref"/></referenceIdentification>
+                        </AdditionalInformation>
+
+                        <!--
+                        <extendedAttributes>
+                            <lotNumber productionDate="2006-02-08">02086R8D</lotNumber>
+                        </extendedAttributes>
+                        -->
+                        <!--
+                        <t t-foreach="line.tax_ids" t-as="tax">
+                            <tradeItemTaxInformation>
+                                <taxTypeDescription>VAT</taxTypeDescription>
+                                <tradeItemTaxAmount>
+                                    <taxPercentage><t t-esc="tax.amoun"/></taxPercentage>
+                                    <taxAmount>0</taxAmount>
+                                </tradeItemTaxAmount>
+                            </tradeItemTaxInformation>
+                        </t>
+                        -->
+                        <totalLineAmount>
+                            <grossAmount>
+                                <Amount><t t-esc="line.price_unit"/></Amount>
+                            </grossAmount>
+                            <netAmount>
+                                <Amount><t t-esc="line.price_unit"/></Amount>
+                            </netAmount>
+                        </totalLineAmount>
+                    </lineItem>
+                    <t t-set="row" t-value="row+1"/>
+                </t>
+                <totalAmount>
+                    <Amount><t t-esc="record.amount_untaxed"/></Amount>
+                </totalAmount>
+                <baseAmount>
+                    <Amount><t t-esc="record.amount_untaxed"/></Amount>
+                </baseAmount>
+                <!--
+                <t t-foreach="record.amount_by_group" t-as="tax">
+                    <t t-if="'IVA' in tax[0]">
+                        <tax type="VAT">
+                            <taxPercentage>16</taxPercentage>
+                            <taxAmount><t t-esc="tax[1]"/></taxAmount>
+                            <taxCategory>TRANSFERIDO</taxCategory>
+                        </tax>
+                    </t>
+                </t>
+                -->
+                <t t-foreach="record.itl_get_taxes()" t-as="tax">
+                    <tax t-att-type="tax[1]">
+                        <taxPercentage><t t-esc="'%.2f' % tax[0].amount"/></taxPercentage>
+                        <taxAmount><t t-esc="tax[2]"/></taxAmount>
+                        <taxCategory>TRANSFERIDO</taxCategory>
+                    </tax>
+                </t>
+                <payableAmount>
+                    <Amount><t t-esc="record.amount_total"/></Amount>
+                </payableAmount>
+            </requestForPayment>
+        </template>
+
+        <record id="itl_addenda_fresko" model="ir.ui.view">
+            <field name="l10n_mx_edi_addenda_flag">True</field>
+        </record>
+    </data>
+</odoo>

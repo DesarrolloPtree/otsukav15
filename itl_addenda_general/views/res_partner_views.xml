@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    
+    <record model="ir.ui.view" id="res_partner_form_inherit_l10n_mx_edi">
+        <field name="name">partner.extended.form.fresko</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_mx_edi.res_partner_form_inherit_l10n_mx_edi"/>
+        <field name="arch" type="xml">
+            <field name="l10n_mx_edi_addenda" position="before">
+                <field name="type_addenda"/>
+            </field>
+        </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="itl_addenda_soriana_pie_camion" name="Addenda Soriana Pie de Camión/Extemporánea">
+            <!--
+            <t t-set="sale_model" t-value="'sale_line_ids' in record.invoice_line_ids._fields"/>
+            <t t-set="sale_id" t-value="record.mapped('invoice_line_ids.sale_line_ids.order_id') if sale_model else False"/>
+            -->
+            <DSCargaRemisionProv
+                xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://tempuri.org/DSCargaRemisionProv.xsd">
+                <Remision Id="Remision1" RowOrder="0">
+                    <Proveedor><t t-esc="record.itl_proveedor"/></Proveedor>
+                    <Remision><t t-esc="record.itl_remision"/></Remision>
+                    <Consecutivo>0</Consecutivo>
+                    <FechaRemision><t t-esc="record.itl_fecha_remision"/>T00:00:00</FechaRemision>
+                    <Tienda><t t-esc="record.itl_tienda"/></Tienda>
+                    <TipoMoneda><t t-esc="record.itl_tipo_moneda"/></TipoMoneda>
+                    <TipoBulto><t t-esc="record.itl_tipo_bulto"/></TipoBulto>
+                    <EntregaMercancia><t t-esc="record.itl_entrega_mercancia"/></EntregaMercancia>
+                    <CumpleReqFiscales>true</CumpleReqFiscales>
+                    <CantidadBultos><t t-esc="record.itl_cantidad_bultos"/></CantidadBultos>
+                    <Subtotal><t t-esc="record.itl_subtotal"/></Subtotal>
+                    <Descuentos><t t-esc="record.itl_descuentos"/></Descuentos>
+                    <IEPS><t t-esc="record.itl_ieps"/></IEPS>
+                    <IVA><t t-esc="record.itl_iva"/></IVA>
+                    <OtrosImpuestos><t t-esc="record.itl_otros_impuestos"/></OtrosImpuestos>
+                    <Total><t t-esc="record.itl_total"/></Total>
+                    <CantidadPedidos><t t-esc="record.itl_cantidad_pedidos"/></CantidadPedidos>
+                    <FechaEntregaMercancia><t t-esc="record.get_itl_fecha_entrega_mercancia_datetime()"/></FechaEntregaMercancia>
+                    <FolioNotaEntrada><t t-esc="record.itl_folio_nota_entrada"/></FolioNotaEntrada>
+                </Remision>
+                <Pedidos Id="Pedido0" RowOrder="0">
+                    <Proveedor><t t-esc="record.itl_proveedor"/></Proveedor>
+                    <Remision><t t-esc="record.itl_remision"/></Remision>
+                    <FolioPedido><t t-esc="record.itl_folio_pedido"/></FolioPedido>
+                    <Tienda><t t-esc="record.itl_tienda"/></Tienda>
+                    <CantidadArticulos><t t-esc="record.itl_cantidad_articulos"/></CantidadArticulos>
+                </Pedidos>
+                <t t-set="row" t-value="0"/>
+                <t t-foreach="record.invoice_line_ids" t-as="line">
+                    <Articulos Id="Articulo0" t-att-RowOrder="row">
+                        <Proveedor><t t-esc="record.itl_proveedor"/></Proveedor>
+                        <Remision><t t-esc="record.itl_remision"/></Remision>
+                        <FolioPedido><t t-esc="record.itl_folio_pedido"/></FolioPedido>
+                        <Tienda><t t-esc="record.itl_tienda"/></Tienda>
+                        <Codigo><t t-esc="line.product_id.barcode"/></Codigo>
+                        <CantidadUnidadCompra><t t-esc="line.quantity"/></CantidadUnidadCompra>
+                        <CostoNetoUnidadCompra><t t-esc="round(line.price_unit,2)"/></CostoNetoUnidadCompra>
+                        <PorcentajeIEPS><t t-esc="line._get_ieps()"/></PorcentajeIEPS>
+                        <PorcentajeIVA><t t-esc="line._get_iva()"/></PorcentajeIVA>
+                    </Articulos>
+                    <t t-set="row" t-value="row+1"/>
+                </t>
+            </DSCargaRemisionProv>
+        </template>
+        <record id="itl_addenda_soriana_pie_camion" model="ir.ui.view">
+            <field name="l10n_mx_edi_addenda_flag">True</field>
+        </record>
+    </data>
+</odoo>

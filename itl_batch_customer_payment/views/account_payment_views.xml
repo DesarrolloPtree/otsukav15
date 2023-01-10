@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        
+        <record id="itl_view_account_payment_form_batch_payment" model="ir.ui.view">
+            <field name="name">account.payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[2]" position="inside">
+                    <field name="itl_is_batch_payment"/>
+                    <field name="itl_batch_file_name" invisible="1"/>
+                    <label for="itl_batch_file" attrs="{'invisible': [('itl_is_batch_payment','=',False)]}"/>
+                    <div class="o_row">
+                        <field name="itl_batch_file" filename="itl_batch_file_name" attrs="{'invisible': [('itl_is_batch_payment','=',False)]}"/>
+                        <!--<button name="itl_process_file" string="Process file" class="oe_link" type="object" attrs="{'invisible': [('itl_is_batch_payment','=',False)]}"/>-->
+                    </div>
+                    <field name="itl_invoices_amount" attrs="{'invisible': [('itl_is_batch_payment','=',False)]}" readonly="1" force_save="1"/>
+                </xpath>
+                
+                <xpath expr="//form/sheet" position="inside">
+                    <notebook>
+                        <page name="itl_batch_payment" string="Exceptions" attrs="{'invisible': [('itl_is_batch_payment','=',False)]}">
+                            <group>
+                                <field name="itl_invalid_uuid_ids" nolabel="1">
+                                    <tree create="false" edit="false" delete="false">
+                                        <field name="itl_uuid"/>
+                                        <field name="itl_pago_date"/>
+                                        <field name="itl_reason"/>
+                                        <field name="itl_invoice_id"/>
+                                        <field name="itl_pago_factura_amount"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="itl_invoice_amount"/>
+                                        <button name="confirm_pay_invoice" string="Pay" class="oe_link" type="object"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

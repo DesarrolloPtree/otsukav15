@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itl_post_with_account_itl_post_with_account,itl_post_with_account.itl_post_with_account,model_itl_post_with_account_itl_post_with_account,base.group_user,1,1,1,1

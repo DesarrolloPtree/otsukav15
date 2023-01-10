@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        
+        <record id="view_sale_order_form_custom_approval" model="ir.ui.view">
+            <field name="name">sale.order.custom.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <form position="attributes">
+                    <attribute name="duplicate">0</attribute>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.server" id="itl_duplicate_Sale_order">
+            <field name="name">Duplicate</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.itl_duplicate_sale_order()</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="bi_report_rec1"
+                model="accounting_report.partner_ledger"
+                string="Partner Aged Payable Report"
+                report_type="qweb-pdf"
+                name="bi_account_receivable_report.bi_report_rec"
+                file="bi_account_receivable_report.bi_report_rec"
+        />
+
+
+    </data>
+</odoo>

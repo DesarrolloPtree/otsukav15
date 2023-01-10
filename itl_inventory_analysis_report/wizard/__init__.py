@@ -1,0 +1,1 @@
+from . import inventory_analysis_report

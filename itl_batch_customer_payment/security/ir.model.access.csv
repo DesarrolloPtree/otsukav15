@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itl_invalid_uuid,access_itl_invalid_uuid,model_itl_invalid_uuid,base.group_user,1,1,1,1

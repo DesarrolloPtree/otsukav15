@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="itl_view_sale_order_form_custom_rme" model="ir.ui.view">
+        <field name="name">itl.sale.order.custom.form.rme</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_order_type.sot_view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="type_id" position="after">
+                <field name="itl_is_rme" invisible="1"/>
+                <field name="itl_warehouse_return_id" attrs="{'invisible': [('itl_is_rme','=',False)], 'required': [('itl_is_rme','=',True)]}"/>
+            </field>
+            <!--
+            <field name="order_line" position="attributes">
+                <attribute name="attrs">{'readonly': ['|',('approval_status', 'in', ['pending', 'approved']),('itl_is_rme','=',True)]}</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">
+                <field name="itl_is_rme" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='analytic_tag_ids']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='route_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='customer_lead']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='discount']" position="attributes">
+                <attribute name="attrs">{'readonly': [('itl_is_rme','=',True)]}</attribute>
+            </xpath>
+            -->
+        </field>
+    </record>
+    
+</odoo>

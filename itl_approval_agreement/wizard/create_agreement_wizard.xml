@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="create_agreement_from_template_form_view" model="ir.ui.view">
+        <field name="name">Create Agreement From Template</field>
+        <field name="model">create.agreement.wizard</field>
+        <field name="inherit_id" ref="agreement_legal.create_agreement_from_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="template_id" position="attributes">
+                <attribute name="domain">[('approval_status','=','approved'),('is_template','=',True)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

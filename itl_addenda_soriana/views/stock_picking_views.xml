@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">itl.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Addendas">
+                        <group>
+                            <field name="itl_picking_addenda_ids" nolabel="1">
+                                <tree>
+                                    <field name="itl_proveedor"/>
+                                    <field name="itl_remision"/>
+                                    <field name="itl_fecha_remision"/>
+                                    <field name="itl_tienda"/>
+                                    <field name="itl_folio_nota_entrada"/>
+                                    <field name="itl_folio_pedido"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

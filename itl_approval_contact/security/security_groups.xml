@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="group_itl_show_send_approve_btn_contact" model="res.groups">
+            <field name="name">Show "Send to approve" button in contacts</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+        
+    </data>
+</odoo>

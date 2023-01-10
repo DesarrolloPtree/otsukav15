@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">itl.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="itl_is_rme" invisible="1"/>
+                    <field name="itl_exchange_receipt_id" readonly="1" attrs="{'invisible': ['|',('itl_is_rme','=',False),('picking_type_code', 'in', ['incoming'])]}"/>
+                </field>
+                <xpath expr="//button[@name='button_validate']" position="after">
+                    <button name="send_receiving_return_rme_email" string="Send email to dest wh" type="object" attrs="{'invisible': ['|',('itl_is_rme','=',False),('state','in',['done','cancel'])]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

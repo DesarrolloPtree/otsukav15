@@ -1,0 +1,33 @@
+<odoo>
+  <data>
+  
+    <record id="itl_view_sale_order_form_custom" model="ir.ui.view">
+        <field name="name">itl.sale.order.custom.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="itl_preselect_warehouse.itl_view_sale_order_form_custom"/>
+        <field name="arch" type="xml">
+          <field name="warehouse_id" position="before">
+            <field name="picking_policy"/>
+          </field>
+          <field name="warehouse_id" position="attributes">
+            <attribute name="attrs">{'readonly': ['|',('picking_policy','!=','one'),('state','not in',['draft','sent'])]}</attribute>
+          </field>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+      <field name="name">sale.order.form.sale.stock.custom</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+      <field name="arch" type="xml">
+        <field name="warehouse_id" position="before">
+          <field name="picking_policy" invisible="1"/>
+        </field>
+        <field name="warehouse_id" position="attributes">
+          <attribute name="attrs">{'readonly': ['|',('picking_policy','!=','one'),('state','not in',['draft','sent'])]}</attribute>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</odoo>

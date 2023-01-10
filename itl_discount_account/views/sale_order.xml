@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        
+        <record id="view_sale_order_form_discount" model="ir.ui.view">
+            <field name="name">sale.order.custom.form.discount</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="after">
+                    <field name="itl_is_discount_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='type_id']" position="after">
+                    <field name="itl_is_discount_type" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_itl_is_discount_type': itl_is_discount_type}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('itl_is_discount_type','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="after">
+                    <field name="itl_qty_uom_discount" attrs="{'readonly': [('itl_is_discount_type','=',False)], 'required': [('itl_is_discount_type','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+      
+    </data>
+</odoo>
